@@ -1,0 +1,1489 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <!-- Load d3.js -->
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+    <title>Taiwanese International Trade </title>
+    <!--
+    <link rel="stylesheet" href="0716221.css">
+    <script src="https://unpkg.com/d3@5.6.0/dist/d3.min.js"></script> 
+  -->    
+    
+  </head>
+  <body>
+  	<select id="select" style="top:90px; left:40px; position:absolute">
+  	<option value="0" style="color:#d9d9d9" selected>請選擇一個國家</option>>
+    <option value="1">中國大陸與香港</option>
+    <option value="2">日本</option>
+    <option value="3">韓國</option>
+    <option value="4">美國</option></select>
+  	<svg width="2000" height="80"></svg>
+    <div id="my_dataviz"></div>
+    <div id="my_dataviz2"></div>
+    <script>
+ 
+  	
+
+
+  var dimensions=[]
+  var country_select = document.getElementById("select");
+  country_select.onchange = function() { 
+  var valOption = this.options[this.selectedIndex].value;
+  console.log(valOption)
+  if(valOption==0){
+  	alert("你尚未選擇")
+  }
+  if(valOption==1){
+  	d3.csv('https://raw.githubusercontent.com/chungmin-yu/visualization/main/china.csv', function(data) {
+	//console.log(data)
+	/*var temp = d3.keys(data[0])
+	for(var i=0; i<19;i++){
+	 	dimensions.push(temp[i+1])
+	 }*/
+	var data1 = data.find(function(item, index, array){
+	  return item.year === '2019'; 
+	});
+	console.log(data)
+	update(data1)
+	//2001
+	d3.select('#y2001')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2001'; });
+      update(data1) 
+    })
+    //2002
+	d3.select('#y2002')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2002'; });
+      update(data1) 
+    })
+    //2003
+	d3.select('#y2003')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2003'; });
+      update(data1) 
+    })
+    //2004
+	d3.select('#y2004')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2004'; });
+      update(data1) 
+    })
+    //2005
+	d3.select('#y2005')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2005'; });
+      update(data1) 
+    })
+    //2006
+	d3.select('#y2006')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2006'; });
+      update(data1) 
+    })
+    //2007
+	d3.select('#y2007')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2007'; });
+      update(data1) 
+    })
+    //2008
+	d3.select('#y2008')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2008'; });
+      update(data1) 
+    })
+    //2009
+	d3.select('#y2009')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2009'; });
+      update(data1) 
+    })
+    //2010
+	d3.select('#y2010')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2010'; });
+      update(data1) 
+    })
+    //2011
+	d3.select('#y2011')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2011'; });
+      update(data1) 
+    })
+    //2012
+	d3.select('#y2012')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2012'; });
+      update(data1) 
+    })
+    //2013
+	d3.select('#y2013')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2013'; });
+      update(data1) 
+    })
+    //2014
+	d3.select('#y2014')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2014'; });
+      update(data1) 
+    })
+    //2015
+	d3.select('#y2015')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2015'; });
+      update(data1) 
+    })
+    //2016
+	d3.select('#y2016')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2016'; });
+      update(data1) 
+    })
+    //2017
+	d3.select('#y2017')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2017'; });
+      update(data1) 
+    })
+    //2018
+	d3.select('#y2018')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2018'; });
+      update(data1) 
+    })
+    //2019
+	d3.select('#y2019')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2019'; });
+      update(data1) 
+    })
+
+  })
+  }
+  if(valOption==2){
+  	d3.csv('https://raw.githubusercontent.com/chungmin-yu/visualization/main/japan.csv', function(data) {
+	
+	var data1 = data.find(function(item, index, array){
+	  return item.year === '2019'; 
+	});
+	console.log(data)
+	update(data1)
+	//2001
+	d3.select('#y2001')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2001'; });
+      update(data1) 
+    })
+    //2002
+	d3.select('#y2002')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2002'; });
+      update(data1) 
+    })
+    //2003
+	d3.select('#y2003')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2003'; });
+      update(data1) 
+    })
+    //2004
+	d3.select('#y2004')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2004'; });
+      update(data1) 
+    })
+    //2005
+	d3.select('#y2005')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2005'; });
+      update(data1) 
+    })
+    //2006
+	d3.select('#y2006')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2006'; });
+      update(data1) 
+    })
+    //2007
+	d3.select('#y2007')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2007'; });
+      update(data1) 
+    })
+    //2008
+	d3.select('#y2008')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2008'; });
+      update(data1) 
+    })
+    //2009
+	d3.select('#y2009')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2009'; });
+      update(data1) 
+    })
+    //2010
+	d3.select('#y2010')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2010'; });
+      update(data1) 
+    })
+    //2011
+	d3.select('#y2011')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2011'; });
+      update(data1) 
+    })
+    //2012
+	d3.select('#y2012')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2012'; });
+      update(data1) 
+    })
+    //2013
+	d3.select('#y2013')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2013'; });
+      update(data1) 
+    })
+    //2014
+	d3.select('#y2014')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2014'; });
+      update(data1) 
+    })
+    //2015
+	d3.select('#y2015')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2015'; });
+      update(data1) 
+    })
+    //2016
+	d3.select('#y2016')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2016'; });
+      update(data1) 
+    })
+    //2017
+	d3.select('#y2017')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2017'; });
+      update(data1) 
+    })
+    //2018
+	d3.select('#y2018')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2018'; });
+      update(data1) 
+    })
+    //2019
+	d3.select('#y2019')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2019'; });
+      update(data1) 
+    })
+
+  })
+  }
+  if(valOption==3){
+  	d3.csv('https://raw.githubusercontent.com/chungmin-yu/visualization/main/korea.csv', function(data) {
+	var data1 = data.find(function(item, index, array){
+	  return item.year === '2019'; 
+	});
+	console.log(data)
+	update(data1)
+	//2001
+	d3.select('#y2001')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2001'; });
+      update(data1) 
+    })
+    //2002
+	d3.select('#y2002')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2002'; });
+      update(data1) 
+    })
+    //2003
+	d3.select('#y2003')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2003'; });
+      update(data1) 
+    })
+    //2004
+	d3.select('#y2004')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2004'; });
+      update(data1) 
+    })
+    //2005
+	d3.select('#y2005')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2005'; });
+      update(data1) 
+    })
+    //2006
+	d3.select('#y2006')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2006'; });
+      update(data1) 
+    })
+    //2007
+	d3.select('#y2007')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2007'; });
+      update(data1) 
+    })
+    //2008
+	d3.select('#y2008')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2008'; });
+      update(data1) 
+    })
+    //2009
+	d3.select('#y2009')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2009'; });
+      update(data1) 
+    })
+    //2010
+	d3.select('#y2010')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2010'; });
+      update(data1) 
+    })
+    //2011
+	d3.select('#y2011')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2011'; });
+      update(data1) 
+    })
+    //2012
+	d3.select('#y2012')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2012'; });
+      update(data1) 
+    })
+    //2013
+	d3.select('#y2013')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2013'; });
+      update(data1) 
+    })
+    //2014
+	d3.select('#y2014')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2014'; });
+      update(data1) 
+    })
+    //2015
+	d3.select('#y2015')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2015'; });
+      update(data1) 
+    })
+    //2016
+	d3.select('#y2016')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2016'; });
+      update(data1) 
+    })
+    //2017
+	d3.select('#y2017')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2017'; });
+      update(data1) 
+    })
+    //2018
+	d3.select('#y2018')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2018'; });
+      update(data1) 
+    })
+    //2019
+	d3.select('#y2019')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2019'; });
+      update(data1) 
+    })
+
+  })
+
+  }
+  if(valOption==4){
+  	d3.csv('https://raw.githubusercontent.com/chungmin-yu/visualization/main/USA.csv', function(data) {
+	 var data1 = data.find(function(item, index, array){
+	  return item.year === '2019'; 
+	});
+	console.log(data)
+	update(data1)
+	//2001
+	d3.select('#y2001')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2001'; });
+      update(data1) 
+    })
+    //2002
+	d3.select('#y2002')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2002'; });
+      update(data1) 
+    })
+    //2003
+	d3.select('#y2003')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2003'; });
+      update(data1) 
+    })
+    //2004
+	d3.select('#y2004')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2004'; });
+      update(data1) 
+    })
+    //2005
+	d3.select('#y2005')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2005'; });
+      update(data1) 
+    })
+    //2006
+	d3.select('#y2006')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2006'; });
+      update(data1) 
+    })
+    //2007
+	d3.select('#y2007')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2007'; });
+      update(data1) 
+    })
+    //2008
+	d3.select('#y2008')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2008'; });
+      update(data1) 
+    })
+    //2009
+	d3.select('#y2009')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2009'; });
+      update(data1) 
+    })
+    //2010
+	d3.select('#y2010')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2010'; });
+      update(data1) 
+    })
+    //2011
+	d3.select('#y2011')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2011'; });
+      update(data1) 
+    })
+    //2012
+	d3.select('#y2012')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2012'; });
+      update(data1) 
+    })
+    //2013
+	d3.select('#y2013')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2013'; });
+      update(data1) 
+    })
+    //2014
+	d3.select('#y2014')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2014'; });
+      update(data1) 
+    })
+    //2015
+	d3.select('#y2015')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2015'; });
+      update(data1) 
+    })
+    //2016
+	d3.select('#y2016')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2016'; });
+      update(data1) 
+    })
+    //2017
+	d3.select('#y2017')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2017'; });
+      update(data1) 
+    })
+    //2018
+	d3.select('#y2018')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2018'; });
+      update(data1) 
+    })
+    //2019
+	d3.select('#y2019')
+	.on("mouseenter", alldata =>{
+      data1 = data.find(function(item, index, array){ return item.year === '2019'; });
+      update(data1) 
+    })
+
+  })
+  }
+}
+
+
+
+// set the dimensions and margins of the graph
+var width = 1500
+    height = 1200
+    margin = 40
+
+// The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
+var radius = Math.min(width, height) / 2 - margin
+
+// append the svg object to the div called 'my_dataviz'
+var svg = d3.select("#my_dataviz")
+  .append("svg")
+    .attr("width", width)
+    .attr("height", height)
+  .append("g")
+    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+// Create dummy data
+//var data1 = {a: 9, b: 20, c:30, d:8, e:12, f:3, g:7, h:14}
+//var data2 = {a: 15, b: 8, c:10, d:28, e:14, f:9, g:10, h:17}
+
+// set the color scale
+var color = d3.scaleOrdinal()
+  .domain(["1.活動物；動物產品", "2.植物產品", "3.動植物油脂", "4.調製食品；飲料及菸酒", "5.礦產品" , "6.化學品" , "7.塑膠、橡膠及其製品" , "8.毛皮及其製品" , "9.木及木製品" , "10.紙漿；紙及其製品；印刷品" , "11.紡織品" , "12.鞋、帽及其他飾品" , "13.非金屬礦物製品" , "14.珠寶及貴金屬製品" ,"15.基本金屬及其製品" , "16.機械及電機設備" , "17.運輸工具" , "18.光學及精密儀器；鐘錶；樂器" , "19.其他"])
+  .range(["#3182bd","#e6550d","#31a354","#d6616b","#b5cf6b","#d62728","#756bb1","#636363","#393b79","#637939","#8c6d31","#ff9896","#843c39","#7b4173","#ce6dbd","#e7ba52","#6b6ecf","#fdd0a2","#d9d9d9"]);
+
+//title color
+  var rect_size = 20
+  svg.append('rect')
+      .attr('y', 105)
+      .attr('x', 400)
+      .attr('width', rect_size)
+      .attr('height', rect_size)
+      .attr('fill', '#3182bd');
+  svg.append('text')
+      .attr('y', 120)
+      .attr('x', 430)
+      .attr('fill', '#3182bd')
+      .attr('font-size', '1em')
+      .text('1.活動物；動物產品');
+  svg.append('rect')
+      .attr('y', 130)
+      .attr('x', 400)
+      .attr('width', rect_size)
+      .attr('height', rect_size)
+      .attr('fill', '#e6550d');
+  svg.append('text')
+      .attr('y', 145)
+      .attr('x', 430)
+      .attr('fill', '#e6550d')
+      .attr('font-size', '1em')
+      .text('2.植物產品');
+  svg.append('rect')
+      .attr('y', 155)
+      .attr('x', 400)
+      .attr('width', rect_size)
+      .attr('height', rect_size)
+      .attr('fill', '#31a354');
+  svg.append('text')
+      .attr('y', 170)
+      .attr('x', 430)
+      .attr('fill', '#31a354')
+      .attr('font-size', '1em')
+      .text('3.動植物油脂');
+  svg.append('rect')
+      .attr('y', 180)
+      .attr('x', 400)
+      .attr('width', rect_size)
+      .attr('height', rect_size)
+      .attr('fill', '#d6616b');
+  svg.append('text')
+      .attr('y', 195)
+      .attr('x', 430)
+      .attr('fill', '#d6616b')
+      .attr('font-size', '1em')
+      .text('4.調製食品；飲料及菸酒');
+  svg.append('rect')
+      .attr('y', 205)
+      .attr('x', 400)
+      .attr('width', rect_size)
+      .attr('height', rect_size)
+      .attr('fill', '#b5cf6b');
+  svg.append('text')
+      .attr('y', 220)
+      .attr('x', 430)
+      .attr('fill', '#b5cf6b')
+      .attr('font-size', '1em')
+      .text('5.礦產品');
+  svg.append('rect')
+      .attr('y', 230)
+      .attr('x', 400)
+      .attr('width', rect_size)
+      .attr('height', rect_size)
+      .attr('fill', '#d62728');
+  svg.append('text')
+      .attr('y', 245)
+      .attr('x', 430)
+      .attr('fill', '#d62728')
+      .attr('font-size', '1em')
+      .text('6.化學品');
+  svg.append('rect')
+      .attr('y', 255)
+      .attr('x', 400)
+      .attr('width', rect_size)
+      .attr('height', rect_size)
+      .attr('fill', '#756bb1');
+  svg.append('text')
+      .attr('y', 270)
+      .attr('x', 430)
+      .attr('fill', '#756bb1')
+      .attr('font-size', '1em')
+      .text('7.塑膠、橡膠及其製品');
+  svg.append('rect')
+      .attr('y', 280)
+      .attr('x', 400)
+      .attr('width', rect_size)
+      .attr('height', rect_size)
+      .attr('fill', '#636363');
+  svg.append('text')
+      .attr('y', 295)
+      .attr('x', 430)
+      .attr('fill', '#636363')
+      .attr('font-size', '1em')
+      .text('8.毛皮及其製品');
+  svg.append('rect')
+      .attr('y', 305)
+      .attr('x', 400)
+      .attr('width', rect_size)
+      .attr('height', rect_size)
+      .attr('fill', '#393b79');
+  svg.append('text')
+      .attr('y', 320)
+      .attr('x', 430)
+      .attr('fill', '#393b79')
+      .attr('font-size', '1em')
+      .text('9.木及木製品');
+  svg.append('rect')
+      .attr('y', 330)
+      .attr('x', 400)
+      .attr('width', rect_size)
+      .attr('height', rect_size)
+      .attr('fill', '#637939');
+  svg.append('text')
+      .attr('y', 345)
+      .attr('x', 430)
+      .attr('fill', '#637939')
+      .attr('font-size', '1em')
+      .text('10.紙漿；紙及其製品；印刷品');
+  svg.append('rect')
+      .attr('y', 355)
+      .attr('x', 400)
+      .attr('width', rect_size)
+      .attr('height', rect_size)
+      .attr('fill', '#8c6d31');
+  svg.append('text')
+      .attr('y', 370)
+      .attr('x', 430)
+      .attr('fill', '#8c6d31')
+      .attr('font-size', '1em')
+      .text('11.紡織品');
+  svg.append('rect')
+      .attr('y', 380)
+      .attr('x', 400)
+      .attr('width', rect_size)
+      .attr('height', rect_size)
+      .attr('fill', '#ff9896');
+  svg.append('text')
+      .attr('y', 395)
+      .attr('x', 430)
+      .attr('fill', '#ff9896')
+      .attr('font-size', '1em')
+      .text('12.鞋、帽及其他飾品');
+  svg.append('rect')
+      .attr('y', 405)
+      .attr('x', 400)
+      .attr('width', rect_size)
+      .attr('height', rect_size)
+      .attr('fill', '#843c39');
+  svg.append('text')
+      .attr('y', 420)
+      .attr('x', 430)
+      .attr('fill', '#843c39')
+      .attr('font-size', '1em')
+      .text('13.非金屬礦物製品');
+  svg.append('rect')
+      .attr('y', 430)
+      .attr('x', 400)
+      .attr('width', rect_size)
+      .attr('height', rect_size)
+      .attr('fill', '#7b4173');
+  svg.append('text')
+      .attr('y', 445)
+      .attr('x', 430)
+      .attr('fill', '#7b4173')
+      .attr('font-size', '1em')
+      .text('14.珠寶及貴金屬製品');
+  svg.append('rect')
+      .attr('y', 455)
+      .attr('x', 400)
+      .attr('width', rect_size)
+      .attr('height', rect_size)
+      .attr('fill', '#ce6dbd');
+  svg.append('text')
+      .attr('y', 470)
+      .attr('x', 430)
+      .attr('fill', '#ce6dbd')
+      .attr('font-size', '1em')
+      .text('15.基本金屬及其製品');
+  svg.append('rect')
+      .attr('y', 480)
+      .attr('x', 400)
+      .attr('width', rect_size)
+      .attr('height', rect_size)
+      .attr('fill', '#e7ba52');
+  svg.append('text')
+      .attr('y', 495)
+      .attr('x', 430)
+      .attr('fill', '#e7ba52')
+      .attr('font-size', '1em')
+      .text('16.機械及電機設備');
+  svg.append('rect')
+      .attr('y', 505)
+      .attr('x', 400)
+      .attr('width', rect_size)
+      .attr('height', rect_size)
+      .attr('fill', '#6b6ecf');
+  svg.append('text')
+      .attr('y', 520)
+      .attr('x', 430)
+      .attr('fill', '#6b6ecf')
+      .attr('font-size', '1em')
+      .text('17.運輸工具');
+  svg.append('rect')
+      .attr('y', 530)
+      .attr('x', 400)
+      .attr('width', rect_size)
+      .attr('height', rect_size)
+      .attr('fill', '#fdd0a2');
+  svg.append('text')
+      .attr('y', 545)
+      .attr('x', 430)
+      .attr('fill', '#fdd0a2')
+      .attr('font-size', '1em')
+      .text('18.光學及精密儀器；鐘錶；樂器');
+  svg.append('rect')
+      .attr('y', 555)
+      .attr('x', 400)
+      .attr('width', rect_size)
+      .attr('height', rect_size)
+      .attr('fill', '#d9d9d9');
+  svg.append('text')
+      .attr('y', 570)
+      .attr('x', 430)
+      .attr('fill', '#d9d9d9')
+      .attr('font-size', '1em')
+      .text('19.其他');
+
+// The arc generator
+var arc = d3.arc()
+  .innerRadius(radius * 0.2)         // This is the size of the donut hole
+  .outerRadius(radius * 0.5)
+
+var arc2 = d3.arc()
+  .innerRadius(radius * 0.3)         // This is the size of the donut hole
+  .outerRadius(radius * 0.6)
+
+// Another arc that won't be drawn. Just for labels positioning
+var outerArc = d3.arc()
+  .innerRadius(radius * 0.5)
+  .outerRadius(radius * 0.5)
+
+function option(data){
+	// Compute the position of each group on the pie:
+	var pie = d3.pie()
+	  .value(function(d) {return d.value; })
+	  .sort(null) // Do not sort group by size
+	  
+	var data_ready = pie(d3.entries(data))
+
+
+	// Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
+	svg.selectAll('.slice').remove()	
+
+	u=svg.selectAll('allSlices')
+	  .data(data_ready)
+
+	 u.enter()
+	  .append('path')
+	  .merge(u)
+	  .transition()
+	  .duration(1000)
+	  .attr('class','slice')
+	  .attr('id', function(d){ kind=d.data.key.split('.'); return "k"+kind[0]})
+	  .attr('d', arc)
+	  .attr('fill', function(d){ return(color(d.data.key)) })
+	  .attr("stroke", "white")
+	  .style("stroke-width", "2px")
+	  .style("opacity", 0.7)
+
+	 svg.selectAll('#k18').on("mouseover", alldata =>{
+	 	svg.selectAll('#k18').attr('d',arc2)
+	 })
+
+	// Add the polylines between chart and labels:
+
+	svg.selectAll('.pline').remove()
+
+	v=svg.selectAll('allPolylines')
+	  .data(data_ready)
+
+	v.enter()
+	  .append('polyline')
+	  	.merge(v)
+	  	.transition()
+	    .duration(1000)
+	    .attr('class','pline')
+	    .attr("stroke", "black")
+	    .style("fill", "none")
+	    .attr("stroke-width", 1)
+	    .attr('points', function(d) {
+	      if(d.data.value>1000000){
+	      var posA = arc.centroid(d) // line insertion in the slice
+	      var posB = outerArc.centroid(d) // line break: we use the other arc generator that has been built only for that
+	      var posC = outerArc.centroid(d); // Label position = almost the same as posB
+	      var midangle = d.startAngle + (d.endAngle - d.startAngle) / 2 // we need the angle to see if the X position will be at the extreme right or extreme left
+	      posC[0] = radius * 0.55 * (midangle < Math.PI ? 1 : -1); // multiply by 1 or -1 to put it on the right or on the left
+	      return [posA, posB, posC]
+	     }
+	    })
+
+	// Add the polylines between chart and labels:
+
+	svg.selectAll('.labels').remove()
+
+
+	w=svg.selectAll('allLabels')
+	  .data(data_ready)
+
+	w.enter()
+	  .append('text')
+	  	.merge(v)
+	  	.transition()
+	    .duration(1000)
+	    .attr('class','labels')
+	    .text( function(d) { console.log(d.data.key) ; if(d.data.value>1000000){return d.data.key+":"+d.data.value} } )
+	    .attr('transform', function(d) {
+	        var pos = outerArc.centroid(d);
+	        var midangle = d.startAngle + (d.endAngle - d.startAngle) / 2
+	        pos[0] = radius * 0.59 * (midangle < Math.PI ? 1 : -1);
+	        return 'translate(' + pos + ')';
+	    })
+	    .style('text-anchor', function(d) {
+	        var midangle = d.startAngle + (d.endAngle - d.startAngle) / 2
+	        return (midangle < Math.PI ? 'start' : 'end')
+	    })
+	    
+	 
+}
+
+
+// Initialize the plot with the first dataset
+//option(data1)
+
+// set the dimensions and margins of the graph
+var margin3 = {top: 10, right: 120, bottom: 30, left: 80},
+    width3 = 1000 - margin3.left - margin3.right,
+    height3 = 400 - margin3.top - margin3.bottom;
+
+// append the svg object to the body of the page
+var svg3 = d3.select("#my_dataviz2")
+  .append("svg")
+    .attr("width", width3 + margin3.left + margin3.right)
+    .attr("height", height3 + margin3.top + margin3.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin3.left + "," + margin3.top + ")");
+
+//Read the data
+d3.csv("https://raw.githubusercontent.com/chungmin-yu/visualization/main/fourcountry.csv", function(data) {
+
+    // List of groups (here I have one group per column)
+    var allGroup = ["中國大陸與香港" , "日本" , "韓國" , "美國" ]
+
+    // Reformat the data: we need an array of arrays of {x, y} tuples
+    var dataReady = allGroup.map( function(grpName) { // .map allows to do something for each element of the list
+      return {
+        name: grpName,
+        values: data.map(function(d) {
+          return {time: d.time, value: +d[grpName]};
+        })
+      };
+    });
+    // I strongly advise to have a look to dataReady with
+    // console.log(dataReady)
+
+    // A color scale: one color for each group
+    var myColor = d3.scaleOrdinal()
+      .domain(allGroup)
+      .range(d3.schemeSet2);
+
+    // Add X axis --> it is a date format
+    var x = d3.scaleLinear()
+      .domain([2001,2020])
+      .range([ 0, width3 ]);
+    svg3.append("g")
+      .attr("transform", "translate(0," + height3 + ")")
+      .call(d3.axisBottom(x));
+
+    // Add Y axis
+    var y = d3.scaleLinear()
+      .domain( [3000000,140000000])
+      .range([ height3, 0 ]);
+    svg3.append("g")
+      .call(d3.axisLeft(y));
+
+    // Add the lines
+    var line = d3.line()
+      .x(function(d) { return x(+d.time) })
+      .y(function(d) { return y(+d.value) })
+    svg3.selectAll("myLines")
+      .data(dataReady)
+      .enter()
+      .append("path")
+        .attr("d", function(d){ return line(d.values) } )
+        .attr("stroke", function(d){ return myColor(d.name) })
+        .style("stroke-width", 4)
+        .style("fill", "none")
+
+    // Add the points
+    svg3
+      // First we need to enter in a group
+      .selectAll("myDots")
+      .data(dataReady)
+      .enter()
+        .append('g')
+        .style("fill", function(d){ return myColor(d.name) })
+      // Second we need to enter in the 'values' part of this group
+      .selectAll("myPoints")
+      .data(function(d){ return d.values })
+      .enter()
+      .append("circle")
+        .attr("cx", function(d) { return x(d.time) } )
+        .attr("cy", function(d) { return y(d.value) } )
+        .attr('class', 'country4')
+        .attr('id',function(d){ return "c"+d.time })
+        .attr("r", 5)
+        .attr("stroke", "white")
+
+    // Add a legend at the end of each line
+    svg3
+      .selectAll("myLabels")
+      .data(dataReady)
+      .enter()
+        .append('g')
+        .append("text")
+          .datum(function(d) { return {name: d.name, value: d.values[d.values.length - 1]}; }) // keep only the last value of each time series
+          .attr("transform", function(d) { return "translate(" + x(d.value.time) + "," + y(d.value.value) + ")"; }) // Put the text at the position of the last point
+          .attr("x", 12) // shift the text a bit more right
+          .text(function(d) { return d.name; })
+          .style("fill", function(d){ return myColor(d.name) })
+          .style("font-size", 15)
+
+})
+
+
+//line and circle to choose year
+const svg2 = d3.select('svg');
+    const width2 = +svg.attr('width');
+    const height2 = +svg.attr('height');
+      
+    const margin2 = { top: 50, right: 0, bottom: 10, left: 0 };
+    const innerWidth2 = width2 - margin2.left - margin2.right;
+    const innerHeigh2t = height2 - margin2.top - margin2.bottom;
+
+    const g2 = svg2.append('g')
+      .attr('transform', `translate(${margin.left},${margin.top})`);
+
+    g2.append("line")
+    .attr("x1", 44)
+    .attr("y1", 50)
+    .attr("x2", 980)
+    .attr("y2", 50)
+    .attr("stroke-width", 2)
+    .attr("stroke", "black");
+
+    //2001
+    g2.append('circle')
+        .attr('id', 'y2001')
+        .attr('cy', 50)
+        .attr('cx', 44)
+        .attr('r', 10)
+        .attr('fill', 'black')
+        .on("mouseover", alldata =>{
+          d3.select('#y2001').attr('r', 20)
+        })
+        .on("mouseout",alldata =>{ 
+          d3.select('#y2001').attr('r', 10) 
+        })
+        .on("click", alldata =>{
+        	d3.selectAll('.country4').attr('r',5)
+        	d3.selectAll('#c2001').attr('r', 15)
+        });
+
+    g2.append('text')
+        .attr('y',25)
+        .attr('x', 26)
+        .text('2001')
+
+    //2002
+    g2.append('circle')
+        .attr('id', 'y2002')
+        .attr('cy', 50)
+        .attr('cx', 96)
+        .attr('r', 10)
+        .attr('fill', 'black')
+        .on("mouseover", alldata =>{
+          d3.select('#y2002').attr('r', 20)
+        })
+        .on("mouseout",alldata =>{ 
+          d3.select('#y2002').attr('r', 10) 
+        })
+        .on("click", alldata =>{
+        	d3.selectAll('.country4').attr('r',5)
+        	d3.selectAll('#c2002').attr('r', 15)
+        });
+
+
+      g2.append('text')
+        .attr('y',25)
+        .attr('x', 78)
+        .text('2002')
+
+    //2003
+     g2.append('circle')
+        .attr('id', 'y2003')
+        .attr('cy', 50)
+        .attr('cx', 148)
+        .attr('r', 10)
+        .attr('fill', 'black')
+        .on("mouseover", alldata =>{
+          d3.select('#y2003').attr('r', 20)
+        })
+        .on("mouseout",alldata =>{ 
+          d3.select('#y2003').attr('r', 10) 
+        })
+        .on("click", alldata =>{
+        	d3.selectAll('.country4').attr('r',5)
+        	d3.selectAll('#c2003').attr('r', 15)
+        });
+
+
+      g2.append('text')
+        .attr('y',25)
+        .attr('x', 130)
+        .text('2003')
+
+    //2004
+    g2.append('circle')
+        .attr('id', 'y2004')
+        .attr('cy', 50)
+        .attr('cx', 200)
+        .attr('r', 10)
+        .attr('fill', 'black')
+        .on("mouseover", alldata =>{
+          d3.select('#y2004').attr('r', 20)
+        })
+        .on("mouseout",alldata =>{ 
+          d3.select('#y2004').attr('r', 10) 
+        })
+        .on("click", alldata =>{
+        	d3.selectAll('.country4').attr('r',5)
+        	d3.selectAll('#c2004').attr('r', 15)
+        });
+
+
+      g2.append('text')
+        .attr('y',25)
+        .attr('x', 182)
+        .text('2004')
+
+    //2005
+     g2.append('circle')
+        .attr('id', 'y2005')
+        .attr('cy', 50)
+        .attr('cx', 252)
+        .attr('r', 10)
+        .attr('fill', 'black')
+         .on("mouseover", alldata =>{
+          d3.select('#y2005').attr('r', 20)
+        })
+        .on("mouseout",alldata =>{ 
+          d3.select('#y2005').attr('r', 10) 
+        })
+        .on("click", alldata =>{
+        	d3.selectAll('.country4').attr('r',5)
+        	d3.selectAll('#c2005').attr('r', 15)
+        });
+
+
+      g2.append('text')
+        .attr('y',25)
+        .attr('x', 234)
+        .text('2005')
+
+    //2006
+    g2.append('circle')
+        .attr('id', 'y2006')
+        .attr('cy', 50)
+        .attr('cx', 304)
+        .attr('r', 10)
+        .attr('fill', 'black')
+         .on("mouseover", alldata =>{
+          d3.select('#y2006').attr('r', 20)
+        })
+        .on("mouseout",alldata =>{ 
+          d3.select('#y2006').attr('r', 10) 
+        })
+        .on("click", alldata =>{
+        	d3.selectAll('.country4').attr('r',5)
+        	d3.selectAll('#c2006').attr('r', 15)
+        });
+
+
+      g2.append('text')
+        .attr('y',25)
+        .attr('x', 286)
+        .text('2006')
+
+    //2007
+     g2.append('circle')
+        .attr('id', 'y2007')
+        .attr('cy', 50)
+        .attr('cx', 356)
+        .attr('r', 10)
+        .attr('fill', 'black')
+         .on("mouseover", alldata =>{
+          d3.select('#y2007').attr('r', 20)
+        })
+        .on("mouseout",alldata =>{ 
+          d3.select('#y2007').attr('r', 10) 
+        })
+        .on("click", alldata =>{
+        	d3.selectAll('.country4').attr('r',5)
+        	d3.selectAll('#c2007').attr('r', 15)
+        });
+
+
+      g2.append('text')
+        .attr('y',25)
+        .attr('x', 338)
+        .text('2007')
+
+    //2008
+    g2.append('circle')
+        .attr('id', 'y2008')
+        .attr('cy', 50)
+        .attr('cx', 408)
+        .attr('r', 10)
+        .attr('fill', 'black')
+         .on("mouseover", alldata =>{
+          d3.select('#y2008').attr('r', 20)
+        })
+        .on("mouseout",alldata =>{ 
+          d3.select('#y2008').attr('r', 10) 
+        })
+        .on("click", alldata =>{
+        	d3.selectAll('.country4').attr('r',5)
+        	d3.selectAll('#c2008').attr('r', 15)
+        });
+
+
+      g2.append('text')
+        .attr('y',25)
+        .attr('x', 390)
+        .text('2008')
+
+    //2009
+     g2.append('circle')
+        .attr('id', 'y2009')
+        .attr('cy', 50)
+        .attr('cx', 460)
+        .attr('r', 10)
+        .attr('fill', 'black')
+         .on("mouseover", alldata =>{
+          d3.select('#y2009').attr('r', 20)
+        })
+        .on("mouseout",alldata =>{ 
+          d3.select('#y2009').attr('r', 10) 
+        })
+        .on("click", alldata =>{
+        	d3.selectAll('.country4').attr('r',5)
+        	d3.selectAll('#c2009').attr('r', 15)
+        });
+
+
+      g2.append('text')
+        .attr('y',25)
+        .attr('x', 442)
+        .text('2009')
+
+    //2010
+    g2.append('circle')
+        .attr('id', 'y2010')
+        .attr('cy', 50)
+        .attr('cx', 512)
+        .attr('r', 10)
+        .attr('fill', 'black')
+         .on("mouseover", alldata =>{
+          d3.select('#y2010').attr('r', 20)
+        })
+        .on("mouseout",alldata =>{ 
+          d3.select('#y2010').attr('r', 10) 
+        })
+        .on("click", alldata =>{
+        	d3.selectAll('.country4').attr('r',5)
+        	d3.selectAll('#c2010').attr('r', 15)
+        });
+
+
+      g2.append('text')
+        .attr('y',25)
+        .attr('x', 494)
+        .text('2010')
+
+    //2011
+     g2.append('circle')
+        .attr('id', 'y2011')
+        .attr('cy', 50)
+        .attr('cx', 564)
+        .attr('r', 10)
+        .attr('fill', 'black')
+         .on("mouseover", alldata =>{
+          d3.select('#y2011').attr('r', 20)
+        })
+        .on("mouseout",alldata =>{ 
+          d3.select('#y2011').attr('r', 10) 
+        })
+        .on("click", alldata =>{
+        	d3.selectAll('.country4').attr('r',5)
+        	d3.selectAll('#c2011').attr('r', 15)
+        });
+
+
+      g2.append('text')
+        .attr('y',25)
+        .attr('x', 546)
+        .text('2011')
+
+    //2012
+    g2.append('circle')
+        .attr('id', 'y2012')
+        .attr('cy', 50)
+        .attr('cx', 616)
+        .attr('r', 10)
+        .attr('fill', 'black')
+         .on("mouseover", alldata =>{
+          d3.select('#y2012').attr('r', 20)
+        })
+        .on("mouseout",alldata =>{ 
+          d3.select('#y2012').attr('r', 10) 
+        })
+        .on("click", alldata =>{
+        	d3.selectAll('.country4').attr('r',5)
+        	d3.selectAll('#c2012').attr('r', 15)
+        });
+
+
+      g2.append('text')
+        .attr('y',25)
+        .attr('x', 598)
+        .text('2012')
+
+    //2013
+     g2.append('circle')
+        .attr('id', 'y2013')
+        .attr('cy', 50)
+        .attr('cx', 668)
+        .attr('r', 10)
+        .attr('fill', 'black')
+         .on("mouseover", alldata =>{
+          d3.select('#y2013').attr('r', 20)
+        })
+        .on("mouseout",alldata =>{ 
+          d3.select('#y2013').attr('r', 10) 
+        })
+        .on("click", alldata =>{
+        	d3.selectAll('.country4').attr('r',5)
+        	d3.selectAll('#c2013').attr('r', 15)
+        });
+
+
+      g2.append('text')
+        .attr('y',25)
+        .attr('x', 650)
+        .text('2013')
+
+    //2014
+    g2.append('circle')
+        .attr('id', 'y2014')
+        .attr('cy', 50)
+        .attr('cx', 720)
+        .attr('r', 10)
+        .attr('fill', 'black')
+         .on("mouseover", alldata =>{
+          d3.select('#y2014').attr('r', 20)
+        })
+        .on("mouseout",alldata =>{ 
+          d3.select('#y2014').attr('r', 10) 
+        })
+        .on("click", alldata =>{
+        	d3.selectAll('.country4').attr('r',5)
+        	d3.selectAll('#c2014').attr('r', 15)
+        });
+
+
+      g2.append('text')
+        .attr('y',25)
+        .attr('x', 702)
+        .text('2014')
+
+    //2015
+     g2.append('circle')
+        .attr('id', 'y2015')
+        .attr('cy', 50)
+        .attr('cx', 772)
+        .attr('r', 10)
+        .attr('fill', 'black')
+         .on("mouseover", alldata =>{
+          d3.select('#y2015').attr('r', 20)
+        })
+        .on("mouseout",alldata =>{ 
+          d3.select('#y2015').attr('r', 10) 
+        })
+        .on("click", alldata =>{
+        	d3.selectAll('.country4').attr('r',5)
+        	d3.selectAll('#c2015').attr('r', 15)
+        });
+
+
+      g2.append('text')
+        .attr('y',25)
+        .attr('x', 754)
+        .text('2015')
+
+    //2016
+    g2.append('circle')
+        .attr('id', 'y2016')
+        .attr('cy', 50)
+        .attr('cx', 824)
+        .attr('r', 10)
+        .attr('fill', 'black')
+         .on("mouseover", alldata =>{
+          d3.select('#y2016').attr('r', 20)
+        })
+        .on("mouseout",alldata =>{ 
+          d3.select('#y2016').attr('r', 10) 
+        })
+        .on("click", alldata =>{
+        	d3.selectAll('.country4').attr('r',5)
+        	d3.selectAll('#c2016').attr('r', 15)
+        });
+
+
+      g2.append('text')
+        .attr('y',25)
+        .attr('x', 806)
+        .text('2016')
+
+    //2017
+     g2.append('circle')
+        .attr('id', 'y2017')
+        .attr('cy', 50)
+        .attr('cx', 876)
+        .attr('r', 10)
+        .attr('fill', 'black')
+         .on("mouseover", alldata =>{
+          d3.select('#y2017').attr('r', 20)
+        })
+        .on("mouseout",alldata =>{ 
+          d3.select('#y2017').attr('r', 10) 
+        })
+        .on("click", alldata =>{
+        	d3.selectAll('.country4').attr('r',5)
+        	d3.selectAll('#c2017').attr('r', 15)
+        });
+
+
+      g2.append('text')
+        .attr('y',25)
+        .attr('x', 858)
+        .text('2017')
+
+    //2018
+    g2.append('circle')
+        .attr('id', 'y2018')
+        .attr('cy', 50)
+        .attr('cx', 928)
+        .attr('r', 10)
+        .attr('fill', 'black')
+         .on("mouseover", alldata =>{
+          d3.select('#y2018').attr('r', 20)
+        })
+        .on("mouseout",alldata =>{ 
+          d3.select('#y2018').attr('r', 10) 
+        })
+        .on("click", alldata =>{
+        	d3.selectAll('.country4').attr('r',5)
+        	d3.selectAll('#c2018').attr('r', 15)
+        });
+
+
+      g2.append('text')
+        .attr('y',25)
+        .attr('x', 910)
+        .text('2018')
+
+    //2019
+     g2.append('circle')
+        .attr('id', 'y2019')
+        .attr('cy', 50)
+        .attr('cx', 980)
+        .attr('r', 10)
+        .attr('fill', 'black')
+         .on("mouseover", alldata =>{
+          d3.select('#y2019').attr('r', 20)
+        })
+        .on("mouseout",alldata =>{ 
+          d3.select('#y2019').attr('r', 10) 
+        })
+        .on("click", alldata =>{
+        	d3.selectAll('.country4').attr('r',5)
+        	d3.selectAll('#c2019').attr('r', 15)
+        });
+
+
+      g2.append('text')
+        .attr('y',25)
+        .attr('x', 962)
+        .text('2019')
+
+
+
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="1489684c-0fb9-492d-9bbf-ac128f0b6dbe" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1lVNRcO8ioyxWYKobvuKwKaUsZm" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RunManager" selected="JavaScript Debug.newsstackchart.html">
+    <configuration name="multiple_line_Chart.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63343/visualization/multiple_line_Chart.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="newsstackchart.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/visualization/newsstackchart.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="sample.html" type="JavascriptDebugType" temporary="true" uri="http://localhost:63342/visualization/dfdfd.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="stackedareachart.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/visualization/stackedareachart.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.newsstackchart.html" />
+        <item itemvalue="JavaScript Debug.stackedareachart.html" />
+        <item itemvalue="JavaScript Debug.sample.html" />
+        <item itemvalue="JavaScript Debug.multiple_line_Chart.html" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1489684c-0fb9-492d-9bbf-ac128f0b6dbe" name="Default Changelist" comment="" />
+      <created>1607678291679</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1607678291679</updated>
+      <workItem from="1607678292858" duration="2250000" />
+      <workItem from="1607681696707" duration="9000" />
+      <workItem from="1607681707222" duration="17716000" />
+      <workItem from="1607778111012" duration="33000" />
+      <workItem from="1607797119723" duration="20000" />
+      <workItem from="1607797140451" duration="1159000" />
+      <workItem from="1607848011726" duration="22792000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="570" y="212" key="FileChooserDialogImpl" timestamp="1607797137292">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="570" y="212" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1607797137292" />
+    <state x="634" y="236" key="FileChooserDialogImpl/0.0.1707.960@0.0.1707.960" timestamp="1607681703950" />
+    <state width="899" height="316" key="GridCell.Tab.0.bottom" timestamp="1607852568126">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="899" height="316" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1607852568126" />
+    <state width="1119" height="316" key="GridCell.Tab.0.bottom/0.0.1707.960@0.0.1707.960" timestamp="1607686329831" />
+    <state width="899" height="316" key="GridCell.Tab.0.center" timestamp="1607852568126">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="899" height="316" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1607852568126" />
+    <state width="1119" height="316" key="GridCell.Tab.0.center/0.0.1707.960@0.0.1707.960" timestamp="1607686329831" />
+    <state width="899" height="316" key="GridCell.Tab.0.left" timestamp="1607852568126">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="899" height="316" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1607852568126" />
+    <state width="1119" height="316" key="GridCell.Tab.0.left/0.0.1707.960@0.0.1707.960" timestamp="1607686329831" />
+    <state width="899" height="316" key="GridCell.Tab.0.right" timestamp="1607852568126">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="899" height="316" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1607852568126" />
+    <state width="1119" height="316" key="GridCell.Tab.0.right/0.0.1707.960@0.0.1707.960" timestamp="1607686329831" />
+    <state width="899" height="316" key="GridCell.Tab.1.bottom" timestamp="1607852568126">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="899" height="316" key="GridCell.Tab.1.bottom/0.0.1536.864@0.0.1536.864" timestamp="1607852568126" />
+    <state width="1119" height="316" key="GridCell.Tab.1.bottom/0.0.1707.960@0.0.1707.960" timestamp="1607686329831" />
+    <state width="899" height="316" key="GridCell.Tab.1.center" timestamp="1607852568126">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="899" height="316" key="GridCell.Tab.1.center/0.0.1536.864@0.0.1536.864" timestamp="1607852568126" />
+    <state width="1119" height="316" key="GridCell.Tab.1.center/0.0.1707.960@0.0.1707.960" timestamp="1607686329831" />
+    <state width="899" height="316" key="GridCell.Tab.1.left" timestamp="1607852568126">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="899" height="316" key="GridCell.Tab.1.left/0.0.1536.864@0.0.1536.864" timestamp="1607852568126" />
+    <state width="1119" height="316" key="GridCell.Tab.1.left/0.0.1707.960@0.0.1707.960" timestamp="1607686329831" />
+    <state width="899" height="316" key="GridCell.Tab.1.right" timestamp="1607852568126">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="899" height="316" key="GridCell.Tab.1.right/0.0.1536.864@0.0.1536.864" timestamp="1607852568126" />
+    <state width="1119" height="316" key="GridCell.Tab.1.right/0.0.1707.960@0.0.1707.960" timestamp="1607686329831" />
+    <state width="899" height="316" key="GridCell.Tab.2.bottom" timestamp="1607852568126">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="899" height="316" key="GridCell.Tab.2.bottom/0.0.1536.864@0.0.1536.864" timestamp="1607852568126" />
+    <state width="1119" height="316" key="GridCell.Tab.2.bottom/0.0.1707.960@0.0.1707.960" timestamp="1607686329831" />
+    <state width="899" height="316" key="GridCell.Tab.2.center" timestamp="1607852568126">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="899" height="316" key="GridCell.Tab.2.center/0.0.1536.864@0.0.1536.864" timestamp="1607852568126" />
+    <state width="1119" height="316" key="GridCell.Tab.2.center/0.0.1707.960@0.0.1707.960" timestamp="1607686329831" />
+    <state width="899" height="316" key="GridCell.Tab.2.left" timestamp="1607852568126">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="899" height="316" key="GridCell.Tab.2.left/0.0.1536.864@0.0.1536.864" timestamp="1607852568126" />
+    <state width="1119" height="316" key="GridCell.Tab.2.left/0.0.1707.960@0.0.1707.960" timestamp="1607686329831" />
+    <state width="899" height="316" key="GridCell.Tab.2.right" timestamp="1607852568126">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="899" height="316" key="GridCell.Tab.2.right/0.0.1536.864@0.0.1536.864" timestamp="1607852568126" />
+    <state width="1119" height="316" key="GridCell.Tab.2.right/0.0.1707.960@0.0.1707.960" timestamp="1607686329831" />
+    <state width="1119" height="316" key="GridCell.Tab.3.bottom" timestamp="1607771145041">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1119" height="316" key="GridCell.Tab.3.bottom/0.0.1536.864@0.0.1536.864" timestamp="1607771145041" />
+    <state width="1119" height="316" key="GridCell.Tab.3.bottom/0.0.1707.960@0.0.1707.960" timestamp="1607686329832" />
+    <state width="1119" height="316" key="GridCell.Tab.3.center" timestamp="1607771145041">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1119" height="316" key="GridCell.Tab.3.center/0.0.1536.864@0.0.1536.864" timestamp="1607771145041" />
+    <state width="1119" height="316" key="GridCell.Tab.3.center/0.0.1707.960@0.0.1707.960" timestamp="1607686329832" />
+    <state width="1119" height="316" key="GridCell.Tab.3.left" timestamp="1607771145041">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1119" height="316" key="GridCell.Tab.3.left/0.0.1536.864@0.0.1536.864" timestamp="1607771145041" />
+    <state width="1119" height="316" key="GridCell.Tab.3.left/0.0.1707.960@0.0.1707.960" timestamp="1607686329832" />
+    <state width="1119" height="316" key="GridCell.Tab.3.right" timestamp="1607771145041">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1119" height="316" key="GridCell.Tab.3.right/0.0.1536.864@0.0.1536.864" timestamp="1607771145041" />
+    <state width="1119" height="316" key="GridCell.Tab.3.right/0.0.1707.960@0.0.1707.960" timestamp="1607686329832" />
+    <state x="355" y="125" key="SettingsEditor" timestamp="1607679473680">
+      <screen x="0" y="0" width="1707" height="960" />
+    </state>
+    <state x="355" y="125" key="SettingsEditor/0.0.1707.960@0.0.1707.960" timestamp="1607679473680" />
+    <state x="611" y="203" key="refactoring.ChangeSignatureDialog" timestamp="1607868520642">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="611" y="203" key="refactoring.ChangeSignatureDialog/0.0.1536.864@0.0.1536.864" timestamp="1607868520642" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/visualization$multiple_line_Chart_html.dat" NAME="multiple_line_Chart.html Coverage Results" MODIFIED="1607696681014" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="WipCoverageRunner" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
+</project>
