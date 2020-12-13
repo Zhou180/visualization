@@ -138,8 +138,8 @@
 
         update(d3.select('#selectbox').property('value'), 0);
 
-        function option(input, speed) {
-           
+        function update(input, speed) {
+
             var copy = keys.filter(f => f.includes(input))
 
             var countries = copy.map(function (kind) {
@@ -201,7 +201,7 @@
                 .on("mousemove", mousemove);
 
             function mousemove() {
-                
+
                 var x0 = x.invert(d3.mouse(this)[0]),
                     i = bisectDate(data, x0,1),
                     d0 = data[i - 1],
@@ -222,7 +222,7 @@
                 focus.selectAll(".lineHoverText")
                     .attr("transform",
                         "translate(" + (x(d.year)) + "," + height / 2.5 + ")")
-                    .text(e => e + " " + "º" + formatValue(d[e]));
+                    .text(e => e + " " + formatValue(d[e]));
 
                 x(d.year) > (width - width / 4)
                     ? focus.selectAll("text.lineHoverText")
