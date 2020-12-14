@@ -53,8 +53,7 @@
     <option value="動植物油脂">動植物油脂</option>
     <option value="飲料及菸酒">飲料及菸酒</option>
     <option value="化學品">化學品</option>
-    <option value="塑膠、橡膠及其製品</">塑膠、橡膠及其製品</option>
-    <option value="毛皮及其製品">毛皮及其製品</option>
+    <option value="毛皮">毛皮及其製品</option>
     <option value="木及木製品">木及木製品</option>
     <option value="印刷品">印刷品</option>
     <option value="紡織品">紡織品</option>
@@ -63,7 +62,8 @@
     <option value="基本金屬及其製品">基本金屬及其製品</option>
     <option value="機械及電機設備">機械及電機設備</option>
     <option value="光學及精密儀器">光學及精密儀器</option>
-    <option value="其他">其他</option>
+    <option value="其餘">其餘</option>
+
 </select>
 
 <svg id="chart" width="850" height="410"></svg>
@@ -225,7 +225,7 @@
                 focus.selectAll(".lineHoverText")
                     .attr("transform",
                         "translate(" + (x(d.year)) + "," + height / 2.5 + ")")
-                    .text(e => e + " " + "º" + formatValue(d[e]));
+                    .text(e => e + " " + formatValue(d[e]));
 
                 x(d.year) > (width - width / 4)
                     ? focus.selectAll("text.lineHoverText")
