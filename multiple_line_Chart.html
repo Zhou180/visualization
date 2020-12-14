@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html>
 <head>
     <meta charset="utf-8">
     <script src="https://d3js.org/d3.v5.min.js"></script>
@@ -77,7 +78,7 @@
         var keys = data.columns.slice(1);
 
         var parseTime = d3.timeParse("%Y"),
-            formatDate = d3.timeFormat("%Y-%m-%d"),
+            formatDate = d3.timeFormat("%Y"),
             bisectDate = d3.bisector(d => d.year).left,
             formatValue = d3.format(",.0f");
 
@@ -138,8 +139,8 @@
 
         update(d3.select('#selectbox').property('value'), 0);
 
-        function option(input, speed) {
-           
+        function update(input, speed) {
+
             var copy = keys.filter(f => f.includes(input))
 
             var countries = copy.map(function (kind) {
@@ -173,6 +174,8 @@
             tooltip(copy);
         }
 
+
+
         function tooltip(copy) {
 
             var labels = focus.selectAll(".lineHoverText")
@@ -201,7 +204,7 @@
                 .on("mousemove", mousemove);
 
             function mousemove() {
-                
+
                 var x0 = x.invert(d3.mouse(this)[0]),
                     i = bisectDate(data, x0,1),
                     d0 = data[i - 1],
@@ -242,3 +245,4 @@
 
 </script>
 </body>
+</html>
