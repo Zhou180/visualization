@@ -9,10 +9,10 @@
 <body>
 
     <select id="selectbox">
-        <option value="china">China</option>
-        <option value="japan">Japan</option>
-        <option value="korea">Korea</option>
-        <option value="us">US</option>
+        <option value="china">中國大陸與香港</option>
+        <option value="japan">日本</option>
+        <option value="korea">韓國</option>
+        <option value="us">美國</option>
     </select>
     <div id="my_dataviz"></div>
 
@@ -43,7 +43,7 @@
         }
         function chart(data,input){
             // set the dimensions and margins of the graph
-            var margin = {top: 60, right: 230, bottom: 50, left: 60},
+            var margin = {top: 60, right: 230, bottom: 50, left: 100},
                 width = 660 - margin.left - margin.right,
                 height = 400 - margin.top - margin.bottom;
 
@@ -92,7 +92,7 @@
                 .domain([0, 25000000])
                 .range([height, 0]);
 
-            if(input=="china") y.domain([0,200000000])
+            if(input=="china") y.domain([0,200000000] )
             if(input=="japan") y.domain([0,25000000])
             if(input=="korea") y.domain([0,25000000])
             if(input=="us") y.domain([0,50000000])
