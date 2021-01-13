@@ -1,0 +1,1557 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <!-- Load d3.js -->
+  <script src="https://d3js.org/d3.v4.js"></script>
+  <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+  <title>Taiwanese International Trade </title>
+  <style>
+    body{
+      background-image: url("http://s3.amazonaws.com/caself/products/photos/000/002/118/original/1.jpg?1598840047");
+    }
+  .link-top {
+            width: 100%;
+            height: 1px;
+            border-top: solid #ACC0D8 1px;
+            border-color: cadetblue;
+        }
+  #selectbox3 {
+    /*移除箭頭樣式*/
+    appearance:none;
+    -moz-appearance:none;
+    -webkit-appearance:none;
+
+    /*改變右邊箭頭樣式*/
+    background: url("arrow.png") no-repeat right center transparent;
+
+    border:0px;
+    width:30%;
+    height:34px;
+    padding-left:2px;
+    padding-right:40px;
+    background-color:#F6F7F7;
+    color:gray;
+  }
+  #selectbox3::-ms-expand {
+    display: none;
+  }
+  #selectbox3:focus{
+    box-shadow: 0 0 5px 2px #467BF4;
+  }
+  #selectbox4 {
+    /*移除箭頭樣式*/
+    appearance:none;
+    -moz-appearance:none;
+    -webkit-appearance:none;
+
+    /*改變右邊箭頭樣式*/
+    background: url("arrow.png") no-repeat right center transparent;
+
+    border:0px;
+    width:30%;
+    height:34px;
+    padding-left:2px;
+    padding-right:40px;
+    background-color:#F6F7F7;
+    color:gray;
+  }
+
+  /*IE隱藏箭頭樣式*/
+  #selectbox4::-ms-expand {
+    display: none;
+  }
+
+  #selectbox4:focus{
+    box-shadow: 0 0 5px 2px #467BF4;
+  }
+  </style>
+
+</head>
+
+<body>
+<svg id="times" width="2000" height="2500" style="left:160px; position:absolute;"></svg>
+<div id="my_dataviz1" style="top:1400px; left:200px;position:absolute;"></div>
+<!--222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222-->
+<div id="my_dataviz2" style="position:absolute;top:2100px;left:250px"></div>
+<!--444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444-->
+<svg id="chart" width="850" height="410" style="position:absolute;top:800px;left:300px"></svg>
+<font style="font-size:11px;position:absolute;top:750px;left:220px">選擇商品類型:</font>
+<select id="selectbox4" style="position:absolute;top:740px;left:310px;">
+  <option value="動物產品">動物產品</option>
+  <option value="植物產品">植物產品</option>
+  <option value="動植物油脂">動植物油脂</option>
+  <option value="礦產品">礦產品</option>
+  <option value="飲料及菸酒">飲料及菸酒</option>
+  <option value="塑膠">塑膠、橡膠及其製品</option>
+  <option value="化學品">化學品</option>
+  <option value="毛皮">毛皮及其製品</option>
+  <option value="木及木製品">木及木製品</option>
+  <option value="印刷品">印刷品</option>
+  <option value="紡織品">紡織品</option>
+  <option value="鞋、帽及其他飾品">鞋、帽及其他飾品</option>
+  <option value="非金屬礦物製品">非金屬礦物製品</option>
+  <option value="珠寶及貴金屬製品">珠寶及貴金屬製品</option>
+  <option value="基本金屬及其製品">基本金屬及其製品</option>
+  <option value="機械及電機設備">機械及電機設備</option>
+  <option value="運輸工具">運輸工具</option>
+  <option value="光學及精密儀器">光學及精密儀器</option>
+  <option value="其餘">其餘</option>
+</select>
+<!--3333333333333333333333333333333333333333333333333333333333333333333333333333333333333333-->
+<select id="selectbox3" style="position:absolute;top:60px;left:300px">
+  <option value="china">中國大陸與香港</option>
+  <option value="japan">日本</option>
+  <option value="korea">韓國</option>
+  <option value="us">美國</option>
+</select>
+<div id="my_dataviz3" style="position:absolute;top:100px;left:200px"></div>
+
+
+
+<div style="position:absolute;top:0px;left:350px;font-weight:bold;font-size:30px;color:red">圖一：主要出口國家各商品種類出口值堆疊面積圖</div>
+<div class="link-top" style="position:absolute;top:50px"></div>
+<div style="position:absolute;top:65px;left:950px;font-size:15px;color:cadetblue;font-weight: bolder">商品種類按國際商品統一分類制度(HS)，可選擇國家:中國大陸與香港、日本、韓國、美國</div>
+
+<div style="position:absolute;top:680px;left:350px;font-weight:bold;font-size:30px;color:red">圖二：主要出口國家各商品種類出口值折線圖</div>
+<div class="link-top" style="position:absolute;top:730px"></div>
+<div style="position:absolute;top:780px;left:220px;">單位(千美元)</div>
+<div style="position:absolute;top:1200px;left:880px;">時間(年)</div>
+<div style="position:absolute;top:745px;left:950px;font-size:15px;color:cadetblue;font-weight:700;">四條線分別代表中國大陸與香港、日本、韓國、美國，可選擇商品種類(按國際商品統一分類制度(HS))</div>
+
+
+<div style="position:absolute;top:1230px;left:350px;font-weight:bold;font-size:30px;color:red">圖三：台灣各年度前十大出口國家</div>
+<div class="link-top" style="position:absolute;top:1280px"></div>
+<div style="position:absolute;top:1340px;left:230px;font-size:20px">時間:</div>
+<div style="position:absolute;top:1990px;left:1080px;">單位(千美元)</div>
+
+<div style="position:absolute;top:2050px;left:350px;font-weight:bold;font-size:30px;color:red">圖四：台灣主要出口商品堆疊面積圖</div>
+<div class="link-top" style="position:absolute;top:2100px"></div>
+
+<script>
+  // set the dimensions and margins of the graph
+  var margin1 = {
+            top: 20,
+            right: 30,
+            bottom: 40,
+            left: 90
+          },
+          width1 = 1000 - margin1.left - margin1.right,
+          height1 = 600 - margin1.top - margin1.bottom;
+
+  // append the svg object to the body of the page
+  var svg1_1 = d3.select("#my_dataviz1")
+          .append("svg")
+          .attr("width", width1 + margin1.left + margin1.right)
+          .attr("height", height1 + margin1.top + margin1.bottom)
+          .append("g")
+          .attr("transform",
+                  "translate(" + margin1.left + "," + margin1.top + ")");
+
+
+  // Add X axis
+  var x = d3.scaleLinear()
+          //.domain([0, 240000000])
+          .range([0, width1 - 50]);
+  var xAxis = svg1_1.append("g")
+          .attr("transform", "translate(0," + height1 + ")")
+
+  // Y axis
+  var y = d3.scaleBand()
+          .range([0, height1])
+          .padding(.1);
+  var yAxis = svg1_1.append("g")
+          .attr("class", "myYaxis")
+
+  function update(valueyear) {
+
+    // Parse the Data
+    d3.csv("https://raw.githubusercontent.com/chungmin-yu/visualization/main/totaltrade.csv", function(predata) {
+
+
+      var countrylist = predata.map(item => Object.values(item)[0]);
+      console.log(countrylist)
+
+      var chartcolor = d3.scaleOrdinal()
+              .domain(countrylist)
+              .range(d3.schemeSet2);
+
+      predata.sort(function(a, b) {
+        return b[valueyear] - a[valueyear];
+        //return d3.descending(a[valueyear], b[valueyear])
+      })
+
+      data = predata.filter(function(item, index, array) {
+        return index < 10
+      })
+      console.log(data)
+      // Add X axis
+      x.domain([0, d3.max(data, function(d) {
+        return +d[valueyear]
+      })]);
+      xAxis.transition().duration(1000).call(d3.axisBottom(x));
+
+
+      // Y axis
+      y.domain(data.map(function(d) {
+        return d.Country;
+      }))
+      yAxis.transition().duration(1000).call(d3.axisLeft(y))
+
+
+      svg1_1.selectAll('.bar').remove()
+      svg1_1.selectAll('.bartext').remove()
+
+
+      // variable u: map data to existing bars
+      var u = svg1_1.selectAll("myRect")
+              .data(data)
+
+      u.enter()
+              .append("rect")
+              .merge(u)
+              .transition()
+              .duration(1000)
+              .attr('class', 'bar')
+              .attr("x", x(0))
+              .attr("y", function(d) {
+                return y(d.Country);
+              })
+              .attr("width", function(d) {
+                return x(d[valueyear]);
+              })
+              .attr("height", y.bandwidth())
+              .attr("fill", function(d) {
+                return chartcolor(d.Country);
+              })
+
+      u.enter()
+              .append("text")
+              .merge(u)
+              .transition()
+              .duration(1000)
+              .attr('class', 'bartext')
+              .attr('x', function(d) {
+                return x(0) + x(d[valueyear]);
+              })
+              .attr("y", function(d) {
+                return y(d.Country) + y.bandwidth() / 2;
+              })
+              .text(function(d) {
+                return d[valueyear]
+              })
+
+    })
+  }
+
+  // Initialize plot
+  update('Value2019')
+
+  const svg1_2 = d3.select('#times');
+  const width1_2 = +svg1_1.attr('width');
+  const height1_2 = +svg1_1.attr('height');
+
+  const margin1_2 = {
+    top: 50,
+    right: 0,
+    bottom: 10,
+    left: 0
+  };
+  const innerWidth2 = width1_2 - margin1_2.left - margin1_2.right;
+  const innerHeight2 = height1_2 - margin1_2.top - margin1_2.bottom;
+
+  const g1 = svg1_2.append('g')
+          .attr('transform', `translate(${margin1.left},${margin1.top})`);
+
+  g1.append("line")
+          .attr("x1", 44)
+          .attr("y1", 1325)
+          .attr("x2", 980)
+          .attr("y2", 1325)
+          .attr("stroke-width", 2)
+          .attr("stroke", "black");
+
+  //2001
+  g1.append('circle')
+          .attr('id', 'y2001')
+          .attr('cy', 1325)
+          .attr('cx', 44)
+          .attr('r', 10)
+          .attr('fill', 'black')
+          .on("mouseover", alldata => {
+            d3.select('#y2001').attr('r', 20)
+            update('Value2001')
+          })
+          .on("mouseout", alldata => {
+            d3.select('#y2001').attr('r', 10)
+          });
+  g1.append('text')
+          .attr('y', 1300)
+          .attr('x', 26)
+          .text('2001')
+
+  //2002
+  g1.append('circle')
+          .attr('id', 'y2002')
+          .attr('cy', 1325)
+          .attr('cx', 96)
+          .attr('r', 10)
+          .attr('fill', 'black')
+          .on("mouseover", alldata => {
+            d3.select('#y2002').attr('r', 20)
+            update('Value2002')
+          })
+          .on("mouseout", alldata => {
+            d3.select('#y2002').attr('r', 10)
+          });
+
+  g1.append('text')
+          .attr('y', 1300)
+          .attr('x', 78)
+          .text('2002')
+
+  //2003
+  g1.append('circle')
+          .attr('id', 'y2003')
+          .attr('cy', 1325)
+          .attr('cx', 148)
+          .attr('r', 10)
+          .attr('fill', 'black')
+          .on("mouseover", alldata => {
+            d3.select('#y2003').attr('r', 20)
+            update('Value2003')
+          })
+          .on("mouseout", alldata => {
+            d3.select('#y2003').attr('r', 10)
+          });
+
+  g1.append('text')
+          .attr('y', 1300)
+          .attr('x', 130)
+          .text('2003')
+
+  //2004
+  g1.append('circle')
+          .attr('id', 'y2004')
+          .attr('cy', 1325)
+          .attr('cx', 200)
+          .attr('r', 10)
+          .attr('fill', 'black')
+          .on("mouseover", alldata => {
+            d3.select('#y2004').attr('r', 20)
+            update('Value2004')
+          })
+          .on("mouseout", alldata => {
+            d3.select('#y2004').attr('r', 10)
+          });
+
+  g1.append('text')
+          .attr('y', 1300)
+          .attr('x', 182)
+          .text('2004')
+
+  //2005
+  g1.append('circle')
+          .attr('id', 'y2005')
+          .attr('cy', 1325)
+          .attr('cx', 252)
+          .attr('r', 10)
+          .attr('fill', 'black')
+          .on("mouseover", alldata => {
+            d3.select('#y2005').attr('r', 20)
+            update('Value2005')
+          })
+          .on("mouseout", alldata => {
+            d3.select('#y2005').attr('r', 10)
+          });
+
+  g1.append('text')
+          .attr('y', 1300)
+          .attr('x', 234)
+          .text('2005')
+
+  //2006
+  g1.append('circle')
+          .attr('id', 'y2006')
+          .attr('cy', 1325)
+          .attr('cx', 304)
+          .attr('r', 10)
+          .attr('fill', 'black')
+          .on("mouseover", alldata => {
+            d3.select('#y2006').attr('r', 20)
+            update('Value2006')
+          })
+          .on("mouseout", alldata => {
+            d3.select('#y2006').attr('r', 10)
+          });
+
+  g1.append('text')
+          .attr('y', 1300)
+          .attr('x', 286)
+          .text('2006')
+
+  //2007
+  g1.append('circle')
+          .attr('id', 'y2007')
+          .attr('cy', 1325)
+          .attr('cx', 356)
+          .attr('r', 10)
+          .attr('fill', 'black')
+          .on("mouseover", alldata => {
+            d3.select('#y2007').attr('r', 20)
+            update('Value2007')
+          })
+          .on("mouseout", alldata => {
+            d3.select('#y2007').attr('r', 10)
+          });
+
+  g1.append('text')
+          .attr('y', 1300)
+          .attr('x', 338)
+          .text('2007')
+
+  //2008
+  g1.append('circle')
+          .attr('id', 'y2008')
+          .attr('cy', 1325)
+          .attr('cx', 408)
+          .attr('r', 10)
+          .attr('fill', 'black')
+          .on("mouseover", alldata => {
+            d3.select('#y2008').attr('r', 20)
+            update('Value2008')
+          })
+          .on("mouseout", alldata => {
+            d3.select('#y2008').attr('r', 10)
+          });
+
+  g1.append('text')
+          .attr('y', 1300)
+          .attr('x', 390)
+          .text('2008')
+
+  //2009
+  g1.append('circle')
+          .attr('id', 'y2009')
+          .attr('cy', 1325)
+          .attr('cx', 460)
+          .attr('r', 10)
+          .attr('fill', 'black')
+          .on("mouseover", alldata => {
+            d3.select('#y2009').attr('r', 20)
+            update('Value2009')
+          })
+          .on("mouseout", alldata => {
+            d3.select('#y2009').attr('r', 10)
+          });
+
+  g1.append('text')
+          .attr('y', 1300)
+          .attr('x', 442)
+          .text('2009')
+
+  //2010
+  g1.append('circle')
+          .attr('id', 'y2010')
+          .attr('cy', 1325)
+          .attr('cx', 512)
+          .attr('r', 10)
+          .attr('fill', 'black')
+          .on("mouseover", alldata => {
+            d3.select('#y2010').attr('r', 20)
+            update('Value2010')
+          })
+          .on("mouseout", alldata => {
+            d3.select('#y2010').attr('r', 10)
+          });
+
+  g1.append('text')
+          .attr('y', 1300)
+          .attr('x', 494)
+          .text('2010')
+
+  //2011
+  g1.append('circle')
+          .attr('id', 'y2011')
+          .attr('cy', 1325)
+          .attr('cx', 564)
+          .attr('r', 10)
+          .attr('fill', 'black')
+          .on("mouseover", alldata => {
+            d3.select('#y2011').attr('r', 20)
+            update('Value2011')
+          })
+          .on("mouseout", alldata => {
+            d3.select('#y2011').attr('r', 10)
+          });
+
+  g1.append('text')
+          .attr('y', 1300)
+          .attr('x', 546)
+          .text('2011')
+
+  //2012
+  g1.append('circle')
+          .attr('id', 'y2012')
+          .attr('cy', 1325)
+          .attr('cx', 616)
+          .attr('r', 10)
+          .attr('fill', 'black')
+          .on("mouseover", alldata => {
+            d3.select('#y2012').attr('r', 20)
+            update('Value2001')
+          })
+          .on("mouseout", alldata => {
+            d3.select('#y2012').attr('r', 10)
+          });
+
+  g1.append('text')
+          .attr('y', 1300)
+          .attr('x', 598)
+          .text('2012')
+
+  //2013
+  g1.append('circle')
+          .attr('id', 'y2013')
+          .attr('cy', 1325)
+          .attr('cx', 668)
+          .attr('r', 10)
+          .attr('fill', 'black')
+          .on("mouseover", alldata => {
+            d3.select('#y2013').attr('r', 20)
+            update('Value2001')
+          })
+          .on("mouseout", alldata => {
+            d3.select('#y2013').attr('r', 10)
+          });
+
+  g1.append('text')
+          .attr('y', 1300)
+          .attr('x', 650)
+          .text('2013')
+
+  //2014
+  g1.append('circle')
+          .attr('id', 'y2014')
+          .attr('cy', 1325)
+          .attr('cx', 720)
+          .attr('r', 10)
+          .attr('fill', 'black')
+          .on("mouseover", alldata => {
+            d3.select('#y2014').attr('r', 20)
+            update('Value2014')
+          })
+          .on("mouseout", alldata => {
+            d3.select('#y2014').attr('r', 10)
+          });
+
+  g1.append('text')
+          .attr('y', 1300)
+          .attr('x', 702)
+          .text('2014')
+
+  //2015
+  g1.append('circle')
+          .attr('id', 'y2015')
+          .attr('cy', 1325)
+          .attr('cx', 772)
+          .attr('r', 10)
+          .attr('fill', 'black')
+          .on("mouseover", alldata => {
+            d3.select('#y2015').attr('r', 20)
+            update('Value2015')
+          })
+          .on("mouseout", alldata => {
+            d3.select('#y2015').attr('r', 10)
+          });
+
+  g1.append('text')
+          .attr('y', 1300)
+          .attr('x', 754)
+          .text('2015')
+
+  //2016
+  g1.append('circle')
+          .attr('id', 'y2016')
+          .attr('cy', 1325)
+          .attr('cx', 824)
+          .attr('r', 10)
+          .attr('fill', 'black')
+          .on("mouseover", alldata => {
+            d3.select('#y2016').attr('r', 20)
+            update('Value2016')
+          })
+          .on("mouseout", alldata => {
+            d3.select('#y2016').attr('r', 10)
+          });
+
+  g1.append('text')
+          .attr('y', 1300)
+          .attr('x', 806)
+          .text('2016')
+
+  //2017
+  g1.append('circle')
+          .attr('id', 'y2017')
+          .attr('cy', 1325)
+          .attr('cx', 876)
+          .attr('r', 10)
+          .attr('fill', 'black')
+          .on("mouseover", alldata => {
+            d3.select('#y2017').attr('r', 20)
+            update('Value2017')
+          })
+          .on("mouseout", alldata => {
+            d3.select('#y2017').attr('r', 10)
+          });
+
+  g1.append('text')
+          .attr('y', 1300)
+          .attr('x', 858)
+          .text('2017')
+
+  //2018
+  g1.append('circle')
+          .attr('id', 'y2018')
+          .attr('cy', 1325)
+          .attr('cx', 928)
+          .attr('r', 10)
+          .attr('fill', 'black')
+          .on("mouseover", alldata => {
+            d3.select('#y2018').attr('r', 20)
+            update('Value2018')
+          })
+          .on("mouseout", alldata => {
+            d3.select('#y2018').attr('r', 10)
+          });
+
+  g1.append('text')
+          .attr('y', 1300)
+          .attr('x', 910)
+          .text('2018')
+
+  //2019
+  g1.append('circle')
+          .attr('id', 'y2019')
+          .attr('cy', 1325)
+          .attr('cx', 980)
+          .attr('r', 10)
+          .attr('fill', 'black')
+          .on("mouseover", alldata => {
+            d3.select('#y2019').attr('r', 20)
+            update('Value2019')
+          })
+          .on("mouseout", alldata => {
+            d3.select('#y2019').attr('r', 10)
+          });
+
+  g1.append('text')
+          .attr('y', 1300)
+          .attr('x', 962)
+          .text('2019')
+
+  //222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222
+
+  // set the dimensions and margins of the graph
+  var margin2 = {
+            top: 60,
+            right: 230,
+            bottom: 50,
+            left: 60
+          },
+          width2 = 660 - margin2.left - margin2.right,
+          height2 = 400 - margin2.top - margin2.bottom;
+
+  // append the svg object to the body of the page
+  var svg2 = d3.select("#my_dataviz2")
+          .append("svg")
+          .attr("width", 1000)
+          .attr("height", 1000)
+          .append("g")
+          .attr("transform",
+                  "translate(" + margin2.left + "," + margin2.top + ")");
+
+
+
+  // Parse the Data
+  d3.csv("https://raw.githubusercontent.com/chungmin-yu/visualization/main/mainmerchandise.csv", function(data) {
+
+
+    //////////
+    // GENERAL //
+    //////////
+
+    // List of groups = header of the csv files
+    var keys = data.columns.slice(1)
+
+
+    // color palette
+    var color = d3.scaleOrdinal()
+            .domain(keys)
+            .range(["#3182bd", "#e6550d", "#31a354", "#756bb1", "#636363", "#393b79", "#637939", "#8c6d31", "#843c39", "#7b4173", "#ce6dbd", "#e7ba52"]);
+
+    //stack the data?
+    var stackedData = d3.stack()
+            .keys(keys)
+            (data)
+
+
+    //////////
+    // AXIS //
+    //////////
+
+    // Add X axis
+    var x = d3.scaleLinear()
+            .domain(d3.extent(data, function(d) {
+              return d.year;
+            }))
+            .range([0, width2]);
+    var xAxis = svg2.append("g")
+            .attr("transform", "translate(0," + height2 + ")")
+            .call(d3.axisBottom(x).ticks(5))
+
+
+    // Add X axis label:
+    svg2.append("text")
+            .attr("text-anchor", "end")
+            .attr("x", width2)
+            .attr("y", height2 + 40)
+            .text("時間(年)");
+
+    // Add Y axis label:
+    svg2.append("text")
+            .attr("text-anchor", "end")
+            .attr("x", 0)
+            .attr("y", -20)
+            .text("單位(千美元)")
+            .attr("text-anchor", "start")
+
+
+    // Add Y axis
+    var y = d3.scaleLinear()
+            .domain([0, 300000])
+            .range([height2, 0]);
+    svg2.append("g")
+            .call(d3.axisLeft(y).ticks(5))
+
+
+
+    //////////
+    // BRUSHING AND CHART //
+    //////////
+
+    // Add a clipPath: everything out of this area won't be drawn.
+    var clip = svg2.append("defs").append("svg:clipPath")
+            .attr("id", "clip")
+            .append("svg:rect")
+            .attr("width", width2)
+            .attr("height", height2)
+            .attr("x", 0)
+            .attr("y", 0);
+
+    // Add brushing
+    var brush = d3.brushX() // Add the brush feature using the d3.brush function
+            .extent([
+              [0, 0],
+              [width2, height2]
+            ]) // initialise the brush area: start at 0,0 and finishes at width,height: it means I select the whole graph area
+            .on("end", updateChart) // Each time the brush selection changes, trigger the 'updateChart' function
+
+    // Create the scatter variable: where both the circles and the brush take place
+    var areaChart = svg2.append('g')
+            .attr("clip-path", "url(#clip)")
+
+    // Area generator
+    var area = d3.area()
+            .x(function(d) {
+              return x(d.data.year);
+            })
+            .y0(function(d) {
+              return y(d[0]);
+            })
+            .y1(function(d) {
+              return y(d[1]);
+            })
+
+    // Show the areas
+    areaChart
+            .selectAll("mylayers")
+            .data(stackedData)
+            .enter()
+            .append("path")
+            .attr("class", function(d) {
+              return "myArea "
+            })
+            .attr("id", function(d) {
+              sort = d.key.split('.');
+              return "s" + sort[0]
+            })
+            .style("fill", function(d) {
+              return color(d.key);
+            })
+            .attr("d", area)
+
+    // Add the brushing
+    areaChart
+            .append("g")
+            .attr("class", "brush")
+            .call(brush);
+
+    var idleTimeout
+
+    function idled() {
+      idleTimeout = null;
+    }
+
+    // A function that update the chart for given boundaries
+    function updateChart() {
+
+      extent = d3.event.selection
+
+      // If no selection, back to initial coordinate. Otherwise, update X axis domain
+      if (!extent) {
+        if (!idleTimeout) return idleTimeout = setTimeout(idled, 350); // This allows to wait a little bit
+        x.domain(d3.extent(data, function(d) {
+          return d.year;
+        }))
+      } else {
+        x.domain([x.invert(extent[0]), x.invert(extent[1])])
+        areaChart.select(".brush").call(brush.move, null) // This remove the grey brush area as soon as the selection has been done
+      }
+
+      // Update axis and area position
+      xAxis.transition().duration(1000).call(d3.axisBottom(x).ticks(5))
+      areaChart
+              .selectAll("path")
+              .transition().duration(1000)
+              .attr("d", area)
+    }
+
+
+
+    //////////
+    // HIGHLIGHT GROUP //
+    //////////
+
+    // What to do when one group is hovered
+    var highlight = function(d) {
+      console.log(d)
+      // reduce opacity of all groups
+      d3.selectAll(".myArea").style("opacity", .1)
+      // expect the one that is hovered
+      sort = d.split('.');
+      d3.select("#s" + sort[0]).style("opacity", 1)
+
+      if (sort[0] == 1) {
+        var idlist = data.map(item => Object.values(item)[1]);
+        console.log(idlist)
+      }
+      if (sort[0] == 2) {
+        var idlist = data.map(item => Object.values(item)[2]);
+      }
+      if (sort[0] == 3) {
+        var idlist = data.map(item => Object.values(item)[3]);
+      }
+      if (sort[0] == 7) {
+        var idlist = data.map(item => Object.values(item)[4]);
+      }
+      if (sort[0] == 8) {
+        var idlist = data.map(item => Object.values(item)[5]);
+      }
+      if (sort[0] == 9) {
+        var idlist = data.map(item => Object.values(item)[6]);
+      }
+      if (sort[0] == 10) {
+        var idlist = data.map(item => Object.values(item)[7]);
+      }
+      if (sort[0] == 11) {
+        var idlist = data.map(item => Object.values(item)[8]);
+      }
+      if (sort[0] == 13) {
+        var idlist = data.map(item => Object.values(item)[9]);
+      }
+      if (sort[0] == 14) {
+        var idlist = data.map(item => Object.values(item)[10]);
+      }
+      if (sort[0] == 15) {
+        var idlist = data.map(item => Object.values(item)[11]);
+      }
+      if (sort[0] == 16) {
+        var idlist = data.map(item => Object.values(item)[12]);
+      }
+
+
+
+
+      svg2.selectAll("mylabel2")
+              .data(idlist)
+              .enter()
+              .append("text")
+              .attr('class', 'datalist')
+              .attr("x", 750 + size * 1.2)
+              .attr("y", function(d, i) {
+                return 10 + i * (size + 5) + (size / 2)
+              }) // 100 is where the first dot appears. 25 is the distance between dots
+              .text(function(d) {
+                return d
+              })
+              .attr("text-anchor", "left")
+              .style("alignment-baseline", "middle");
+
+
+    }
+
+    // And when it is not hovered anymore
+    var noHighlight = function(d) {
+      d3.selectAll(".myArea").style("opacity", 1)
+      d3.selectAll(".datalist").remove()
+    }
+
+
+
+    //////////
+    // LEGEND //
+    //////////
+
+    // Add one dot in the legend for each name.
+    var size = 20
+    svg2.selectAll("myrect")
+            .data(keys)
+            .enter()
+            .append("rect")
+            .attr("x", 400)
+            .attr("y", function(d, i) {
+              return 10 + i * (size + 5)
+            }) // 100 is where the first dot appears. 25 is the distance between dots
+            .attr("width", size)
+            .attr("height", size)
+            .style("fill", function(d) {
+              return color(d)
+            })
+            .on("mouseover", highlight)
+            .on("mouseleave", noHighlight)
+
+    // Add one dot in the legend for each name.
+    svg2.selectAll("mylabels")
+            .data(keys)
+            .enter()
+            .append("text")
+            .attr("x", 400 + size * 1.2)
+            .attr("y", function(d, i) {
+              return 10 + i * (size + 5) + (size / 2)
+            }) // 100 is where the first dot appears. 25 is the distance between dots
+            .style("fill", function(d) {
+              return color(d)
+            })
+            .text(function(d) {
+              return d
+            })
+            .attr("text-anchor", "left")
+            .style("alignment-baseline", "middle")
+            .on("mouseover", highlight)
+            .on("mouseleave", noHighlight)
+
+
+    var idyear = data.map(item => Object.values(item)[0]);
+
+
+    svg2.selectAll("labelyear")
+            .data(idyear)
+            .enter()
+            .append("text")
+            .attr("x", 700 + size * 1.2)
+            .attr("y", function(d, i) {
+              return 10 + i * (size + 5) + (size / 2)
+            }) // 100 is where the first dot appears. 25 is the distance between dots
+            .text(function(d) {
+              return d + ":"
+            })
+            .attr("text-anchor", "left")
+            .style("alignment-baseline", "middle")
+
+
+  })
+
+  //444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444
+
+  d3.csv('https://raw.githubusercontent.com/Zhou180/visualization/main/all-groupsutf.csv', function(data) {
+
+    console.log(data)
+    var keys = data.columns.slice(1);
+
+    var parseTime = d3.timeParse("%Y"),
+            formatDate = d3.timeFormat("%Y"),
+            bisectDate = d3.bisector(d => d.year).left,
+            formatValue = d3.format(",.0f");
+
+    data.forEach(function(d) {
+      d.year = parseTime(d.year);
+      return d;
+    })
+
+    var svg4 = d3.select("#chart"),
+            margin4 = {
+              top: 15,
+              right: 15,
+              bottom: 15,
+              left: 65
+            },
+            width4 = +svg4.attr("width") - margin4.left - margin4.right,
+            height4 = +svg4.attr("height") - margin4.top - margin4.bottom;
+
+    var x = d3.scaleTime()
+            .rangeRound([margin4.left, width4 - margin4.right])
+            .domain(d3.extent(data, d => d.year))
+
+    var y = d3.scaleLinear()
+            .rangeRound([height4 - margin4.bottom, margin4.top]);
+
+    var z = d3.scaleOrdinal(d3.schemeCategory10);
+
+    var line = d3.line()
+            .curve(d3.curveCardinal)
+            .x(d => x(d.year))
+            .y(d => y(d.exports));
+
+    svg4.append("g")
+            .attr("class", "x-axis")
+            .attr("transform", "translate(0," + (height4 - margin4.bottom) + ")")
+            .call(d3.axisBottom(x).tickFormat(d3.timeFormat("%Y")));
+
+    svg4.append("g")
+            .attr("class", "y-axis")
+            .attr("transform", "translate(" + margin4.left + ",0)");
+
+    var focus = svg4.append("g")
+            .attr("class", "focus")
+            .style("display", "none");
+
+    focus.append("line").attr("class", "lineHover")
+            .style("stroke", "#999")
+            .attr("stroke-width", 1)
+            .style("shape-rendering", "crispEdges")
+            .style("opacity", 0.5)
+            .attr("y1", -height4)
+            .attr("y2", 0);
+
+    focus.append("text").attr("class", "lineHoverDate")
+            .attr("text-anchor", "middle")
+            .attr("font-size", 12);
+
+    var overlay = svg4.append("rect")
+            .attr("class", "overlay")
+            .attr("x", margin4.left)
+            .attr("width", width4 - margin4.right - margin4.left)
+            .attr("height", height4)
+
+    update(d3.select('#selectbox4').property('value'), 0);
+
+    function update(input, speed) {
+
+      var copy = keys.filter(f => f.includes(input))
+
+      var countries = copy.map(function(kind) {
+        return {
+          id: kind,
+          values: data.map(d => {
+            return {
+              year: d.year,
+              exports: +d[kind]
+            }
+          })
+        };
+      });
+
+      y.domain([
+        d3.min(countries, d => d3.min(d.values, c => c.exports)),
+        d3.max(countries, d => d3.max(d.values, c => c.exports))
+      ]).nice();
+
+      var axG = svg4.selectAll(".y-axis").transition()
+              .duration(speed)
+              .call(d3.axisLeft(y).tickSize(-width4 + margin4.right + margin4.left))
+
+      axG.selectAll("path")
+              .style("display", 'none')
+      axG.selectAll("line")
+              .style("opacity", .2)
+
+      var country = svg4.selectAll(".countries")
+              .data(countries);
+
+      country.exit().remove();
+
+      country.enter().insert("g", ".focus").append("path")
+              .attr("class", "line countries")
+              .style("stroke", d => z(d.id))
+              .merge(country)
+              .transition().duration(speed)
+              .attr("d", d => line(d.values))
+              .attr("fill", "none")
+              .style("opacity", .75)
+              .attr("stroke-width", "1.5px")
+
+      tooltip(copy);
+    }
+
+
+
+    function tooltip(copy) {
+
+      var labels = focus.selectAll(".lineHoverText")
+              .data(copy)
+
+      labels.enter().append("text")
+              .attr("class", "lineHoverText")
+              .style("fill", d => z(d))
+              .attr("text-anchor", "start")
+              .attr("font-size", 12)
+              .attr("dy", (_, i) => 1 + i * 2 + "em")
+              .merge(labels);
+
+      var circles = focus.selectAll(".hoverCircle")
+              .style("opacity", 0.75)
+              .data(copy)
+
+      circles.enter().append("circle")
+              .attr("class", "hoverCircle")
+              .style("fill", d => z(d))
+              .attr("r", 2.5)
+              .merge(circles);
+
+      svg4.selectAll(".overlay")
+              .style("fill", "none")
+              .style('pointer-events', "all")
+              .on("mouseover", function() {
+                focus.style("display", null);
+              })
+              .on("mouseout", function() {
+                focus.style("display", "none");
+              })
+              .on("mousemove", mousemove);
+
+      function mousemove() {
+
+        var x0 = x.invert(d3.mouse(this)[0]),
+                i = bisectDate(data, x0, 1),
+                d0 = data[i - 1],
+                d1 = data[i],
+                d = (x0 - d0.year) > (d1.year - x0) ? d1 : d0;
+        focus.select(".lineHover")
+                .attr("transform", "translate(" + x(d.year) + "," + height4 + ")");
+
+        focus.select(".lineHoverDate")
+                .attr("transform",
+                        "translate(" + x(d.year) + "," + (height4 + margin4.bottom) + ")")
+                .text(formatDate(d.year));
+
+        focus.selectAll(".hoverCircle")
+                .attr("cy", e => y(d[e]))
+                .attr("cx", x(d.year));
+
+        focus.selectAll(".lineHoverText")
+                .attr("transform",
+                        "translate(" + (x(d.year)) + "," + height4 / 2.5 + ")")
+                .text(e => e + " " + formatValue(d[e]));
+
+        x(d.year) > (width4 - width4 / 4) ?
+                focus.selectAll("text.lineHoverText")
+                        .attr("text-anchor", "end")
+                        .attr("dx", -10) :
+                focus.selectAll("text.lineHoverText")
+                        .attr("text-anchor", "start")
+                        .attr("dx", 10)
+      }
+    }
+
+    var selectbox4 = d3.select("#selectbox4")
+            .on("change", function() {
+              update(this.value, 750);
+            })
+  })
+
+
+
+  //333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333
+
+  var nowvalue = d3.select('#selectbox3').property('value')
+  option(nowvalue)
+
+  function change(select) {
+    d3.select("svg#delete_pattern").remove();
+    option(select)
+  }
+
+  function option(input) {
+    if (input == "china") {
+      d3.csv('https://raw.githubusercontent.com/chungmin-yu/visualization/main/china.csv', d => chart(d, input))
+    }
+    if (input == "japan") {
+      d3.csv('https://raw.githubusercontent.com/chungmin-yu/visualization/main/japan.csv', d => chart(d, input))
+    }
+    if (input == "korea") {
+      d3.csv('https://raw.githubusercontent.com/chungmin-yu/visualization/main/korea.csv', d => chart(d, input))
+    }
+    if (input == "us") {
+      d3.csv('https://raw.githubusercontent.com/chungmin-yu/visualization/main/USA.csv', d => chart(d, input))
+    }
+  }
+
+  function chart(data, input) {
+    // set the dimensions and margins of the graph
+    var margin3 = {
+              top: 60,
+              right: 230,
+              bottom: 50,
+              left: 100
+            },
+            width3 = 660 - margin3.left - margin3.right,
+            height3 = 400 - margin3.top - margin3.bottom;
+
+    // append the svg object to the body of the page
+    var svg3 = d3.select("#my_dataviz3")
+            .append("svg")
+            .attr('id', 'delete_pattern')
+            .attr("width", 1000)
+            .attr("height", 600)
+            .append("g")
+            .attr("transform",
+                    "translate(" + margin3.left + "," + margin3.top + ")");
+
+
+
+    var keys = data.columns.slice(1)
+    var color = d3.scaleOrdinal()
+            .domain(["1.活動物；動物產品", "2.植物產品", "3.動植物油脂", "4.調製食品；飲料及菸酒", "5.礦產品", "6.化學品", "7.塑膠、橡膠及其製品", "8.毛皮及其製品", "9.木及木製品", "10.紙漿；紙及其製品；印刷品", "11.紡織品", "12.鞋、帽及其他飾品", "13.非金屬礦物製品", "14.珠寶及貴金屬製品", "15.基本金屬及其製品", "16.機械及電機設備", "17.運輸工具", "18.光學及精密儀器；鐘錶；樂器", "19.其他"])
+            .range(["#3182bd", "#e6550d", "#31a354", "#d6616b", "#b5cf6b", "#d62728", "#756bb1", "#636363", "#393b79", "#637939", "#8c6d31", "#ff9896", "#843c39", "#7b4173", "#ce6dbd", "#e7ba52", "#6b6ecf", "#fdd0a2", "#d9d9d9"]);
+
+    var stackedData = d3.stack()
+            .keys(keys)
+            (data);
+
+    function SumDatareduce(arr) {
+      return arr.reduce((a, b) => a + b);
+    }
+
+    //////////
+    // AXIS //
+    //////////
+
+
+    // Add X axis
+    var x = d3.scaleLinear()
+            .domain(d3.extent(data, d => d.year))
+            .range([0, width3]);
+
+    var xAxis = svg3.append("g")
+            .attr("transform", "translate(0," + height3 + ")")
+            .call(d3.axisBottom(x).ticks(5))
+
+    // Add Y axis
+
+    var y = d3.scaleLinear()
+            .domain([0, 25000000])
+            .range([height3, 0]);
+
+    if (input == "china") y.domain([0, 200000000])
+    if (input == "japan") y.domain([0, 25000000])
+    if (input == "korea") y.domain([0, 25000000])
+    if (input == "us") y.domain([0, 50000000])
+    var yAxis = svg3.append("g")
+            .call(d3.axisLeft(y).ticks(5))
+
+    // Add X axis label:
+    svg3.append("text")
+            .attr("text-anchor", "end")
+            .attr("x", width3)
+            .attr("y", height3 + 40)
+            .text("時間(年)");
+
+    // Add Y axis label:
+    svg3.append("text")
+            .attr("text-anchor", "end")
+            .attr("x", 0)
+            .attr("y", -20)
+            .text("單位(百萬元)")
+            .attr("text-anchor", "start")
+
+
+
+
+
+    //////////
+    // BRUSHING AND CHART //
+    //////////
+
+    // Add a clipPath: everything out of this area won't be drawn.
+    var clip = svg3.append("defs").append("svg:clipPath")
+            .attr("id", "clip")
+            .append("svg:rect")
+            .attr("width", width3)
+            .attr("height", height3)
+            .attr("x", 0)
+            .attr("y", 0);
+
+    // Add brushing
+    var brush = d3.brushX() // Add the brush feature using the d3.brush function
+            .extent([
+              [0, 0],
+              [width3, height3]
+            ]) // initialise the brush area: start at 0,0 and finishes at width,height: it means I select the whole graph area
+            .on("end", updateChart) // Each time the brush selection changes, trigger the 'updateChart' function
+
+    // Create the scatter variable: where both the circles and the brush take place
+    var areaChart = svg3.append('g')
+            .attr("clip-path", "url(#clip)")
+
+    // Area generator
+    var area = d3.area()
+            .x(function(d) {
+              return x(d.data.year);
+            })
+            .y0(function(d) {
+              return y(d[0]);
+            })
+            .y1(function(d) {
+              return y(d[1]);
+            })
+
+
+    // Show the areas
+    areaChart
+            .selectAll("mylayers")
+            .data(stackedData)
+            .enter()
+            .append("path")
+            .attr("class", function(d) {
+              return "myArea "
+            })
+            .attr("id", function(d) {
+              sort = d.key.split('.');
+              return "s" + sort[0]
+            })
+            .style("fill", function(d) {
+              return color(d.key);
+            })
+            .attr("d", area)
+
+    // Add the brushing
+    areaChart
+            .append("g")
+            .attr("class", "brush")
+            .call(brush);
+
+    var idleTimeout
+
+    function idled() {
+      idleTimeout = null;
+    }
+
+
+    function updateChart() {
+
+      extent = d3.event.selection
+
+      // If no selection, back to initial coordinate. Otherwise, option X axis domain
+      if (!extent) {
+        if (!idleTimeout) return idleTimeout = setTimeout(idled, 350); // This allows to wait a little bit
+        x.domain(d3.extent(data, function(d) {
+          return d.year;
+        }))
+      } else {
+        x.domain([x.invert(extent[0]), x.invert(extent[1])])
+        areaChart.select(".brush").call(brush.move, null) // This remove the grey brush area as soon as the selection has been done
+      }
+
+      // Update axis and area position
+      xAxis.transition().duration(1000).call(d3.axisBottom(x).ticks(5))
+      areaChart
+              .selectAll("path")
+              .transition().duration(1000)
+              .attr("d", area)
+    }
+
+    //////////
+    // HIGHLIGHT GROUP //
+    //////////
+
+    // What to do when one group is hovered
+    var highlight = function(d) {
+      console.log(d)
+      // reduce opacity of all groups
+      d3.selectAll(".myArea").style("opacity", .1)
+      // expect the one that is hovered
+      sort = d.split('.');
+      d3.select("#s" + sort[0]).style("opacity", 1)
+
+      if (sort[0] == 1) {
+        var idlist = data.map(item => Object.values(item)[1]);
+        console.log(idlist)
+      }
+      if (sort[0] == 2) {
+        var idlist = data.map(item => Object.values(item)[2]);
+      }
+      if (sort[0] == 3) {
+        var idlist = data.map(item => Object.values(item)[3]);
+      }
+      if (sort[0] == 4) {
+        var idlist = data.map(item => Object.values(item)[4]);
+      }
+      if (sort[0] == 5) {
+        var idlist = data.map(item => Object.values(item)[5]);
+      }
+      if (sort[0] == 6) {
+        var idlist = data.map(item => Object.values(item)[6]);
+      }
+      if (sort[0] == 7) {
+        var idlist = data.map(item => Object.values(item)[7]);
+      }
+      if (sort[0] == 8) {
+        var idlist = data.map(item => Object.values(item)[8]);
+      }
+      if (sort[0] == 9) {
+        var idlist = data.map(item => Object.values(item)[9]);
+      }
+      if (sort[0] == 10) {
+        var idlist = data.map(item => Object.values(item)[10]);
+      }
+      if (sort[0] == 11) {
+        var idlist = data.map(item => Object.values(item)[11]);
+      }
+      if (sort[0] == 12) {
+        var idlist = data.map(item => Object.values(item)[12]);
+      }
+      if (sort[0] == 13) {
+        var idlist = data.map(item => Object.values(item)[13]);
+      }
+      if (sort[0] == 14) {
+        var idlist = data.map(item => Object.values(item)[14]);
+      }
+      if (sort[0] == 15) {
+        var idlist = data.map(item => Object.values(item)[15]);
+      }
+      if (sort[0] == 16) {
+        var idlist = data.map(item => Object.values(item)[16]);
+      }
+      if (sort[0] == 17) {
+        var idlist = data.map(item => Object.values(item)[17]);
+      }
+      if (sort[0] == 18) {
+        var idlist = data.map(item => Object.values(item)[18]);
+      }
+      if (sort[0] == 19) {
+        var idlist = data.map(item => Object.values(item)[19]);
+      }
+
+      svg3.selectAll("mylabel2")
+              .data(idlist)
+              .enter()
+              .append("text")
+              .attr('class', 'datalist')
+              .attr("x", 750 + size * 1.2)
+              .attr("y", function(d, i) {
+                return 10 + i * (size + 5) + (size / 2)
+              }) // 100 is where the first dot appears. 25 is the distance between dots
+              .text(function(d) {
+                return d
+              })
+              .attr("text-anchor", "left")
+              .style("alignment-baseline", "middle");
+
+
+
+
+    }
+
+    // And when it is not hovered anymore
+    var noHighlight = function(d) {
+      d3.selectAll(".myArea").style("opacity", 1)
+      d3.selectAll(".datalist").remove()
+    }
+
+
+    //////////
+    // LEGEND //
+    //////////
+
+    // Add one dot in the legend for each name.
+    var size = 20
+    svg3.selectAll("myrect")
+            .data(keys)
+            .enter()
+            .append("rect")
+            .on("mouseover", highlight)
+            .on("mouseleave", noHighlight)
+            .transition()
+            .duration(1000)
+            .attr("x", 400)
+            .attr("y", function(d, i) {
+              return 10 + i * (size + 5)
+            }) // 100 is where the first dot appears. 25 is the distance between dots
+            .attr("width", size)
+            .attr("height", size)
+            .style("fill", function(d) {
+              return color(d)
+            })
+
+
+    // Add one dot in the legend for each name.
+    svg3.selectAll("mylabels")
+            .data(keys)
+            .enter()
+            .append("text")
+            .on("mouseover", highlight)
+            .on("mouseleave", noHighlight)
+            .transition()
+            .duration(1000)
+            .attr("x", 400 + size * 1.2)
+            .attr("y", function(d, i) {
+              return 10 + i * (size + 5) + (size / 2)
+            }) // 100 is where the first dot appears. 25 is the distance between dots
+            .style("fill", function(d) {
+              return color(d)
+            })
+            .text(function(d) {
+              return d
+            })
+            .attr("text-anchor", "left")
+            .style("alignment-baseline", "middle")
+
+
+    /*var y2 = d3.scaleLinear()
+    .domain([2000, 2020])
+    .range([ 0, height ]);*/
+
+    var idyear = data.map(item => Object.values(item)[0]);
+
+
+    svg3.selectAll("labelyear")
+            .data(idyear)
+            .enter()
+            .append("text")
+            .transition()
+            .duration(1000)
+            .attr("x", 700 + size * 1.2)
+            .attr("y", function(d, i) {
+              return 10 + i * (size + 5) + (size / 2)
+            }) // 100 is where the first dot appears. 25 is the distance between dots
+            .text(function(d) {
+              return d + ":"
+            })
+            .attr("text-anchor", "left")
+            .style("alignment-baseline", "middle")
+
+
+
+  }
+  var selectbox3 = d3.select("#selectbox3")
+          .on("change", function() {
+            console.log(this.value)
+            change(this.value);
+          })
+
+</script>
+</body>
+
+</html>
