@@ -24,7 +24,7 @@
     -webkit-appearance:none;
 
     /*改變右邊箭頭樣式*/
-    background: url("arrow.png") no-repeat right center transparent;
+    background: url("https://raw.githubusercontent.com/chungmin-yu/visualization/main/arrow.png?raw=true") no-repeat right center transparent;
 
     border:0px;
     width:30%;
@@ -47,7 +47,7 @@
     -webkit-appearance:none;
 
     /*改變右邊箭頭樣式*/
-    background: url("arrow.png") no-repeat right center transparent;
+    background: url("https://raw.githubusercontent.com/chungmin-yu/visualization/main/arrow.png?raw=true") no-repeat right center transparent;
 
     border:0px;
     width:30%;
@@ -975,7 +975,7 @@
 
   //444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444
 
-  d3.csv('https://raw.githubusercontent.com/Zhou180/visualization/main/all-groupsutf.csv', function(data) {
+  d3.csv('https://raw.githubusercontent.com/chungmin-yu/visualization/main/all-groupsutf.csv', function(data) {
 
     console.log(data)
     var keys = data.columns.slice(1);
@@ -1329,7 +1329,7 @@
             })
             .attr("id", function(d) {
               sort = d.key.split('.');
-              return "s" + sort[0]
+              return "S" + sort[0]
             })
             .style("fill", function(d) {
               return color(d.key);
@@ -1383,7 +1383,7 @@
       d3.selectAll(".myArea").style("opacity", .1)
       // expect the one that is hovered
       sort = d.split('.');
-      d3.select("#s" + sort[0]).style("opacity", 1)
+      d3.select("#S" + sort[0]).style("opacity", 1)
 
       if (sort[0] == 1) {
         var idlist = data.map(item => Object.values(item)[1]);
